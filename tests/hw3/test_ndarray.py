@@ -110,7 +110,10 @@ def test_reduce_sum(params, device):
     _A = np.random.randn(*dims)
     A = nd.array(_A, device=device)
     np.testing.assert_allclose(
-        _A.sum(axis=axis, keepdims=True), A.sum(axis=axis, keepdims=True).numpy(), atol=1e-5, rtol=1e-5
+        _A.sum(axis=axis, keepdims=True),
+        A.sum(axis=axis, keepdims=True).numpy(),
+        atol=1e-5,
+        rtol=1e-5,
     )
 
 
@@ -121,7 +124,10 @@ def test_reduce_max(params, device):
     _A = np.random.randn(*dims)
     A = nd.array(_A, device=device)
     np.testing.assert_allclose(
-        _A.max(axis=axis, keepdims=True), A.max(axis=axis, keepdims=True).numpy(), atol=1e-5, rtol=1e-5
+        _A.max(axis=axis, keepdims=True),
+        A.max(axis=axis, keepdims=True).numpy(),
+        atol=1e-5,
+        rtol=1e-5,
     )
 
 
@@ -383,12 +389,11 @@ def test_scalar_div(device):
 def test_scalar_power(device):
     A = np.random.randn(5, 5)
     B = nd.array(A, device=device)
-    np.testing.assert_allclose(
-        np.power(A, 5.0), (B**5.0).numpy(), atol=1e-5, rtol=1e-5
-    )
-    np.testing.assert_allclose(
-        np.power(A, 0.5), (B**0.5).numpy(), atol=1e-5, rtol=1e-5
-    )
+    np.testing.assert_allclose(np.power(A, 5.0), (B**5.0).numpy(), atol=1e-5, rtol=1e-5)
+    print(A)
+    print(B)
+    print(A**0.5)
+    np.testing.assert_allclose(np.power(A, 0.5), (B**0.5).numpy(), atol=1e-5, rtol=1e-5)
 
 
 @pytest.mark.parametrize("device", _DEVICES, ids=["cpu", "cuda"])
