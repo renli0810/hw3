@@ -484,8 +484,8 @@ namespace needle
     // 2 0 0 2 0 0 1 3 2
     __global__ void MatmulKernel(const scalar_t *a, scalar_t *b, scalar_t *out, uint32_t m, uint32_t n, uint32_t p)
     {
-      int rows = blockIdx.y * blockDim.y + threadIdx.y; // 当前行
-      int cols = blockIdx.x * blockDim.x + threadIdx.x;
+      int cols = blockIdx.y * blockDim.y + threadIdx.y; // 当前行
+      int rows = blockIdx.x * blockDim.x + threadIdx.x;
       if (rows >= m || cols >= p)
       {
         return;
@@ -525,7 +525,7 @@ namespace needle
 
       /// BEGIN SOLUTION
       dim3 grid(M, P);
-      dim3 block(4, 4);
+      dim3 block(1, 1);
       MatmulKernel<<<grid, block>>>(a.ptr, b.ptr, out->ptr, M, N, P);
       /// END SOLUTION
     }
